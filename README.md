@@ -1,27 +1,31 @@
-# :question: Bienvenidos al Quiz de Cultura General :question: #
+# jsFrontedApp
 
-En este quiz podrás comprobar cuanto sabes sobre el mundo que te rodea, con 10 preguntas sobre distintos ámbitos seleccionadas de manera completamente aleatoria. ¿Quieres jugar?
-### :arrow_right: [Haz click aquí para jugar](https://javirs200.github.io/QuiZ_vol.2/# "El quiz supremo") :arrow_left: ###
+Proyecto individual para la realización de una aplicación FrontEnd usnado los conocimientos de HTML, CSS, JavaScript aprendidos hasta el momento.
 
-## :hammer_and_wrench: Herramientas usadas :hammer_and_wrench: ##
-
-- HTML
-- CSS
-- JavaScript
-  * Formato SPA (Single Page Application)
-  * Llamadas a la API https://opentdb.com/ para generar preguntas de forma aleatoria.
-  * Funcionalidad de generación de preguntas instantánea.
-  * Validación de formulario.
-- Firebase
-  * Auth: Funcionalidad de registro e inicio de sesión.
-  * Firestore: Base de datos para guardar los usuarios registrados, actualizar su puntuación, y generar gráficas a raiz de estos datos.
-
-
-## :mage_man: Autoria :mage_man: ##
-
-Proyecto realizado por Javier Miranda (https://github.com/javirs200) y Antonio Mangado (https://github.com/AntonioMangado), para el bootcamp FullStack de TheBridge. No dudes en contactarnos si deseas participar, comentar o criticar nuestro trabajo. 
+Requisitos
+  ok - Manipulación dinámica del DOM
+  ok - Crear una página SPA para las preguntas
+  ok - Manejo de ES6
+  ok - Peticiones HTTP a APIs
+  ok - APIs HTML5: Uso de Local storage, gráficas, Mapas, etc...
+  ----Uso de Firebase:Auth, Storage, Firestore
+  ok - Sin frameworks ni librerias externas en la medida de lo posible
+  ok - Gestión del proyecto con  Github 
+  ok - Código limpio, buenas prácticas
+  ----README bien documentado.
+  ----Desplegar la app en gitHub Pages y añadir URL al README
 
 
-## :heavy_plus_sign: Cómo contribuir :heavy_plus_sign: ##
-
-Si deseas contribuir a este proyecto, no dudes en hacer fork. Estaremos encantados de ver nuestro proyecto crecer con tus aportaciones. 
+funcionanlidades minimas
+    ---singin y logout
+    ok - navegación entre pantallas
+    ok - llamada a la api para recuperar vuelos
+    -------VVVV----------
+    buscar vuelos
+    por numero
+    por origen destino
+    mostrar detalles de vuelo
+    seguir al avión en mapa
+    mostrar mapa con vuelos cercanos
+    Guardar lista de favoritos en el usuario ( guardar colección de números de vuelo )
+    dsiplay lista de vuelos normal + botón añadir a favoritos (si estas logeado)
