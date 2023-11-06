@@ -3,18 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>jsFrontendApp</title>
-    <script src="./scripts/script.js"></script>
+    <title>Flight Finder</title>
+    <link rel="shortcut icon" href="./assets/control-tower.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+    <link rel="stylesheet" href="./styles/style.css">
+    <script src="./scripts/script.js" type="module"></script>
 </head>
+
 <body>
+    <!--<nav>
+        <ul id="nav-bar">
+            <li><a href="#" id="home-btn">HOME</a></li>
+            <li><a href="#" id="ranking-btn">RANKINGS</a></li>
+            <li><a href="#" id="login-btn">LOG IN</a></li>
+        </ul>
+    </nav>-->
+    
     <main>
-        <div id="content">
-            <h1>playground</h1>
-            <h2>Press f12 to show the console and hit the button</h2>
-            <button id="accion">Action</button>
-        </div>
-        <div id="mapa">
-        </div>
+
+        <section id="landing-screen">
+            <h2>¡Bienvenido a Flight finder</h2>
+            <button id="search-flights-btn">Buscar Vuelos</button>
+            <button id="view-map-btn">Ver Mapa</button>
+            <button id="login-screen-btn">Login/SignUp</button>
+        </section>
+
+        <section id="flights-searcher-screen" hidden>
+        </section>
+
+        <section id="flights-screen" hidden>
+        </section>
+
+        <section id="map-screen" hidden>
+            <div id="map"></div>
+        </section>
+
     </main>
+
 </body>
 </html>
+

@@ -1,30 +1,27 @@
-# jsFrontedApp
+# :question: Bienvenidos al Quiz de Cultura General :question: #
 
-Proyecto individual para la realización de una aplicación FrontEnd usnado los conocimientos de HTML, CSS, JavaScript aprendidos hasta el momento.
+En este quiz podrás comprobar cuanto sabes sobre el mundo que te rodea, con 10 preguntas sobre distintos ámbitos seleccionadas de manera completamente aleatoria. ¿Quieres jugar?
+### :arrow_right: [Haz click aquí para jugar](https://javirs200.github.io/QuiZ_vol.2/# "El quiz supremo") :arrow_left: ###
 
-Requisitos
-Manipulación dinámica del DOM
-Crear una página SPA para las preguntas
-Manejo de ES6
-Peticiones HTTP a APIs
-APIs HTML5: Uso de Local storage, gráficas, Mapas, etc...
-Uso de Firebase:Auth, Storage, Firestore
-Sin frameworks ni librerias externas en la medida de lo posible
-Gestión del proyecto con  Github 
-Código limpio, buenas prácticas
-README bien documentado.
-Desplegar la app en gitHub Pages y añadir URL al README
+## :hammer_and_wrench: Herramientas usadas :hammer_and_wrench: ##
+
+- HTML
+- CSS
+- JavaScript
+  * Formato SPA (Single Page Application)
+  * Llamadas a la API https://opentdb.com/ para generar preguntas de forma aleatoria.
+  * Funcionalidad de generación de preguntas instantánea.
+  * Validación de formulario.
+- Firebase
+  * Auth: Funcionalidad de registro e inicio de sesión.
+  * Firestore: Base de datos para guardar los usuarios registrados, actualizar su puntuación, y generar gráficas a raiz de estos datos.
 
 
-Características generales de tu App:
-¿Qué tecnologías/APIs usarás en tu APP? Ejemplo:
-Para esta web usaremos:
-HTML
-CSS
-JavaScript
-ES6
-Gráficas?
-Mapas?
-¿API?¿Cuál/es?
-¿No encuentro API para la idea? Consúltanos
-¿Firebase? ¿Autenticación, Firestore, Sorage?
+## :mage_man: Autoria :mage_man: ##
+
+Proyecto realizado por Javier Miranda (https://github.com/javirs200) y Antonio Mangado (https://github.com/AntonioMangado), para el bootcamp FullStack de TheBridge. No dudes en contactarnos si deseas participar, comentar o criticar nuestro trabajo. 
+
+
+## :heavy_plus_sign: Cómo contribuir :heavy_plus_sign: ##
+
+Si deseas contribuir a este proyecto, no dudes en hacer fork. Estaremos encantados de ver nuestro proyecto crecer con tus aportaciones. 
