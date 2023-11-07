@@ -2,7 +2,7 @@
 
 Proyecto individual para la realización de una aplicación FrontEnd usnado los conocimientos de HTML, CSS, JavaScript aprendidos hasta el momento.
 
-# Como funciona ?
+# Que encontrarás ?
 
 Esta app permite la busqueda de infromacion sobre vuelos , 
 permite buscar los vielos por codigo de vuelo , Aeropuertos cercanos y mediante su eleccion en el mapa
