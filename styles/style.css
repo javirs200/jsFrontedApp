@@ -1,0 +1,119 @@
+html{
+  font-family: 'B612', sans-serif;
+}
+
+
+
+/*cualquier elemento con el atributo hidden
+para que funcione en los flexbox*/
+[hidden] {
+  display: none;
+}
+
+body {
+  display: flex;
+  background-color: rgb(132, 199, 221);
+  justify-content: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+main {
+  height: 75vh;
+  width: 100vw;
+  background-color: lightblue;
+  border-radius: 25px;
+  overflow: scroll;
+}
+
+h1 {
+  text-shadow: blue 20px;
+}
+
+h2 {
+  margin: 0;
+}
+
+button {
+  font-size: large;
+  font-weight: bold;
+  width: 75%;
+  height: 50px;
+  margin: 10px;
+  background-color: rgb(127, 212, 255);
+  border-radius: 10px;
+}
+
+button#viewBylocationBTN{
+  background-color: rgb(127, 161, 255);
+}
+
+button#saveToFavouritesBtn{
+  background-color: rgb(219, 255, 127);
+}
+
+input[type=submit] {
+  font-size: large;
+  font-weight: bold;
+  width: 50%;
+  height: 50px;
+  margin: 10px;
+  background-color: rgb(127, 255, 168);
+  border-radius: 10px;
+}
+
+input[type=text] {
+  font-size: large;
+  font-weight: bold;
+  width: 50%;
+  height: 50px;
+  margin: 10px;
+  background-color:  rgb(166, 251, 193);
+  border-radius: 10px;
+}
+
+section {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  font-size: large;
+  font-weight: bold;
+}
+
+ul {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+li{
+  margin: 10px;
+}
+
+img#aircraftImg{
+  width: 50vw;
+}
+
+#map {
+  height: 400px;
+  width: 400px;
+  border-radius: 20px;
+}
+
+@media screen and (min-width: 700px) {
+  #map {
+    width: 500px;
+  }
+  
+}
+
+@media screen and (min-width: 1025px) {
+  
+  #map {
+    width: 800px;
+  }
+}

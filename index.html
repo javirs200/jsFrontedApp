@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Finder</title>
+    <link rel="shortcut icon" href="./assets/control-tower.png" type="image/x-icon">
+
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-auth.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=B612&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+    <link rel="stylesheet" href="./styles/style.css">
+    <script src="./scripts/script.js" type="module"></script>
+</head>
+
+<body>
+    <header>
+        <h1>Flight finder</h1>
+    </header>
+
+    <main>
+        <section id="landingScreen">
+            <h2>Bienvenido!</h2>
+            <button id="view-map-btn">Ver Mapa</button>
+            <button id="search-flights-btn">Buscar Vuelos</button>
+            <button id="login-screen-btn">Login/SignUp</button>
+            <button id="view-Favs-btn" hidden>Ver Favoritos</button>
+        </section>
+
+        <section id="flightsSearcherScreen" hidden>
+            <h1>Buscar Vuelos</h1>
+        </section>
+
+        <section id="searchByFNumberScreen" hidden>
+        </section>
+
+        <section id="searchByAirportNameScreen" hidden>
+        </section>
+
+        <section id="flightsScreen" hidden>
+        </section>
+
+        <section id="flightDetailsScreen" hidden>
+        </section>
+
+        <section id="favouritesScreen" hidden>
+        </section>
+
+        <section id="mapScreen" hidden>
+            <h1>Vuelos Cercanos</h1>
+            <div id="map"></div>
+        </section>
+
+    </main>
+
+</body>
+
+</html>
