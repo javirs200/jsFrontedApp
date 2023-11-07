@@ -1,11 +1,29 @@
 /*SPA aplication all in one*/
 
 //global variables
+
+const firebaseConfig = {
+    apiKey: "AIzaSyC1x-geFbGFA8gLAiMYabDMfiHzgxw_v1k",
+    authDomain: "flightfinder-fcda8.firebaseapp.com",
+    projectId: "flightfinder-fcda8",
+    storageBucket: "flightfinder-fcda8.appspot.com",
+    messagingSenderId: "396018341516",
+    appId: "1:396018341516:web:a29d995743c966cc49cda9"
+};
+
+firebase.initializeApp(firebaseConfig);// Inicializaar app Firebase
+
+let db = firebase.firestore();// db representa mi BBDD //inicia Firestore
+
+let provider = new firebase.auth.GoogleAuthProvider();
+
 let navigationQueuque = []
 
 let globalMap = null
 
 let layerGroup = null
+
+let isSigned = null
 
 //Screens
 let flightsSearcherScreen = document.querySelector("section#flightsSearcherScreen")
@@ -14,6 +32,13 @@ let mapScreen = document.querySelector("section#mapScreen")
 let searchByFNumberScreen = document.querySelector("section#searchByFNumberScreen")
 let searchByAirportNameScreen = document.querySelector("section#searchByAirportNameScreen")
 let flightDetailsScreen = document.querySelector("section#flightDetailsScreen")
+let favouritesScreen = document.querySelector("section#favouritesScreen")
+
+//buttons
+let authBtn = document.querySelector("#login-screen-btn")
+let goSearchBtn = document.querySelector("#search-flights-btn")
+let goMapBtn = document.querySelector("#view-map-btn")
+let goFavsBtn = document.querySelector("#view-Favs-btn")
 
 //map icons
 let planeIcon = L.icon({
@@ -79,7 +104,6 @@ function initSearcherScreen() {
     gotoSearchByAirportNameBtn.setAttribute('id', 'gotoSearchByAirportNameBtn')
     gotoSearchByAirportNameBtn.innerHTML = 'Buscar por Aeropuerto Nombre o ICAO/IATA'
     gotoSearchByAirportNameBtn.addEventListener("click", () => {
-        console.log("pulsado");
         fillSearchByAirportNameScreen()
         navigationQueuque.push(flightsSearcherScreen)
         swapScreens(flightsSearcherScreen, searchByAirportNameScreen)
@@ -234,10 +258,20 @@ function fillFlightDatailsScreen(details, aircraftImage) {
     if (aircraftImage != null) {
 
         let img = document.createElement('img')
-        img.style.width = '100%'
         img.setAttribute('src', aircraftImage.src)
+        img.setAttribute('id', 'aircraftImg')
         flightDetailsScreen.appendChild(img)
 
+    }
+
+    if (isSigned) {
+        let saveToFavouritesBtn = document.createElement('button')
+        saveToFavouritesBtn.setAttribute('id', 'saveToFavouritesBtn')
+        saveToFavouritesBtn.innerHTML = 'Guardar en favoritos'
+        saveToFavouritesBtn.addEventListener("click", () => {
+            saveFlight(details.identification.number.default)
+        })
+        flightDetailsScreen.appendChild(saveToFavouritesBtn)
     }
 
     let detailsBackButton = document.createElement('button')
@@ -246,6 +280,98 @@ function fillFlightDatailsScreen(details, aircraftImage) {
     detailsBackButton.addEventListener("click", () => { goBackInNavigation(flightDetailsScreen) })
 
     flightDetailsScreen.appendChild(detailsBackButton)
+}
+
+function saveFlight(flighNumber) {
+    console.log('guardame esto :', flighNumber);
+
+    let user = firebase.auth().currentUser;
+
+    if (user) {
+
+        let docRef = db.collection("favoritos").doc(user.uid)
+
+        docRef.get()
+            .then((doc) => {
+                if (doc.data()) {
+                    //si existen datos se añaden
+                    let flights = doc.data().flights
+                    console.log('payload existente :', flights);
+                    flights.push(flighNumber)
+                    console.log('nuevo payload : ', flights);
+                    docRef.set({ flights })
+                        .then(() => {
+                            console.log("Document successfully written!");
+                        })
+                        .catch((error) => console.error("Error adding document: ", error));
+                } else {
+                    //sino se crean
+                    docRef.set(
+                        { flights: [flighNumber] }
+                    )
+                        .then(() => {
+                            console.log("Document successfully written!");
+                        })
+                        .catch((error) => console.error("Error adding document: ", error));
+
+                }
+            })
+            .catch((error) => console.error("Error reading document: ", error));
+
+    } else {
+        // El usuario no está autenticado
+        console.log('El usuario no está autenticado.');
+    }
+
+
+}
+
+function loadFavs() {
+
+    favouritesScreen.innerHTML = null
+
+    let user = firebase.auth().currentUser;
+
+    if (user) {
+
+        let docRef = db.collection("favoritos").doc(user.uid)
+
+        docRef.get()
+            .then((doc) => {
+                if (doc.data()) {
+                    let favs = doc.data()
+
+                    let flightsFavsltitle = document.createElement('h1')
+                    flightsFavsltitle.setAttribute('id', 'flightsFavsltitle')
+                    flightsFavsltitle.appendChild(document.createTextNode(`Tus Favoritos`))
+
+                    favouritesScreen.appendChild(flightsFavsltitle)
+
+                    let favsList = document.createElement('ul')
+                    favsList.setAttribute('id', 'favsList')
+
+                    for (const fav of favs.flights) {
+                        favsList.appendChild(document.createElement('li').appendChild(document.createTextNode(fav)))
+                        favsList.appendChild(document.createElement('br'))
+                    }
+
+                    favouritesScreen.appendChild(favsList)
+
+                    let favsBackButton = document.createElement('button')
+                    favsBackButton.setAttribute('id', 'favsBackButton')
+                    favsBackButton.innerHTML = 'Go Back'
+                    favsBackButton.addEventListener("click", () => { goBackInNavigation(favouritesScreen) })
+
+                    favouritesScreen.appendChild(favsBackButton)
+                }
+            })
+            .catch((error) => console.error("Error reading document: ", error));
+
+    } else {
+        // El usuario no está autenticado
+        console.log('El usuario no está autenticado.');
+    }
+
 }
 
 //navigation methods
@@ -318,11 +444,15 @@ async function addTransport(location) {
 
 }
 
-function showNewLocationOnMap(latitude,longitude){
+function showNewLocationOnMap(latitude, longitude) {
 
-    let position = {'coords':{'latitude':latitude,'longitude':longitude}}
+    globalMap.setView([latitude, longitude], 12)
 
-    showPosition(position)
+    layerGroup.clearLayers()
+
+    L.marker([latitude, longitude]).addTo(layerGroup);
+
+    addTransport(location)
 
 }
 
@@ -335,7 +465,7 @@ async function findAirport(AirportName) {
     flightDetailsScreen.innerHTML = null
 
     if (data != null) {
-        
+
         //console.log(data.results);
 
         let airportList = document.createElement('ul')
@@ -353,15 +483,15 @@ async function findAirport(AirportName) {
                 .appendChild(document.createTextNode("longitud : " + result.detail.lon)))
 
             let viewBylocationBTN = document.createElement('button')
-            viewBylocationBTN.setAttribute('id','viewBylocationBTN')
+            viewBylocationBTN.setAttribute('id', 'viewBylocationBTN')
             viewBylocationBTN.innerHTML = 'Find in Map'
-            viewBylocationBTN.addEventListener('click',()=>{
-                showNewLocationOnMap(result.detail.lat,result.detail.lon)
+            viewBylocationBTN.addEventListener('click', () => {
+                showNewLocationOnMap(result.detail.lat, result.detail.lon)
                 navigationQueuque.push(flightDetailsScreen)
                 swapScreens(flightDetailsScreen, mapScreen)
             })
             airportListElement.appendChild(viewBylocationBTN)
-            
+
             airportList.appendChild(airportListElement)
         }
 
@@ -464,21 +594,94 @@ function showSearchFlightsScreen() {
 
 }
 
+function showFavsScreen() {
+
+    navigationQueuque.push(landingScreen)
+
+    loadFavs()
+
+    swapScreens(landingScreen, favouritesScreen)
+}
+
+function showSinginPopUP() {
+
+    firebase.auth().signInWithPopup(provider)
+        .then(function (result) {
+            // User is signed in with Google.
+            //var user = result.user;
+            //console.log('Successfully signed in with Google:', user);
+
+            authBtn.removeEventListener('click', showSinginPopUP)
+
+            authBtn.addEventListener('click', logout)
+
+        })
+        .catch(function (error) {
+            // Handle errors here, e.g., user canceled the sign-in popup or there was an error.
+            console.error('Google sign-in error:', error);
+        });
+
+
+
+}
+
+function logout() {
+    firebase.auth().signOut()
+        .then(function () {
+            // Sign-out successful.
+            console.log('User signed out');
+        })
+        .catch(function (error) {
+            // An error happened.
+            console.error('Logout error:', error);
+        });
+}
+
 // ------ events and Start -------
+
+firebase.auth().onAuthStateChanged(function (user) {
+
+    isSigned = user ? true : false;
+
+    if (user) {
+        // User is signed in.
+        console.log('User is signed in');
+
+        authBtn.innerHTML = 'LogOut'
+
+        authBtn.removeEventListener('click', showSinginPopUP)
+
+        authBtn.addEventListener('click', logout)
+
+        if (goFavsBtn.hidden)
+            goFavsBtn.toggleAttribute('hidden')
+
+    } else {
+        // User is signed out.
+        console.log('User is signed out');
+
+        authBtn.innerHTML = 'LogIn/SignUp'
+
+        authBtn.addEventListener('click', showSinginPopUP)
+
+        authBtn.removeEventListener('click', logout)
+
+        if (!goFavsBtn.hidden)
+            goFavsBtn.toggleAttribute('hidden')
+    }
+
+    console.log('is signed ', isSigned);
+});
 
 window.addEventListener("load", () => {
 
-    //go to search-flights
-    document.querySelector("#search-flights-btn")
-        .addEventListener("click", showSearchFlightsScreen)
+    goSearchBtn.addEventListener("click", showSearchFlightsScreen)
 
-    //go to search-flights
-    document.querySelector("#view-map-btn")
-        .addEventListener("click", showMapWithCurrentLocation)
+    goMapBtn.addEventListener("click", showMapWithCurrentLocation)
 
-    //go to search-flights
-    document.querySelector("#login-screen-btn")
-        .addEventListener("click", () => { console.log("not implemented yet") })
+    authBtn.addEventListener("click", showSinginPopUP)
+
+    goFavsBtn.addEventListener('click', showFavsScreen)
 
     initScreens()
 

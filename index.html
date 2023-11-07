@@ -7,6 +7,10 @@
     <title>Flight Finder</title>
     <link rel="shortcut icon" href="./assets/control-tower.png" type="image/x-icon">
 
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-auth.js"></script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=B612&display=swap" rel="stylesheet">
@@ -29,9 +33,10 @@
     <main>
         <section id="landingScreen">
             <h2>Bienvenido!</h2>
-            <button id="search-flights-btn">Buscar Vuelos</button>
             <button id="view-map-btn">Ver Mapa</button>
+            <button id="search-flights-btn">Buscar Vuelos</button>
             <button id="login-screen-btn">Login/SignUp</button>
+            <button id="view-Favs-btn" hidden>Ver Favoritos</button>
         </section>
 
         <section id="flightsSearcherScreen" hidden>
@@ -48,6 +53,9 @@
         </section>
 
         <section id="flightDetailsScreen" hidden>
+        </section>
+
+        <section id="favouritesScreen" hidden>
         </section>
 
         <section id="mapScreen" hidden>
