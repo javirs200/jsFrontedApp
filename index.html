@@ -7,6 +7,10 @@
     <title>Flight Finder</title>
     <link rel="shortcut icon" href="./assets/control-tower.png" type="image/x-icon">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=B612&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
     <!-- Make sure you put this AFTER Leaflet's CSS -->
@@ -18,22 +22,36 @@
 </head>
 
 <body>
+    <header>
+        <h1>Flight finder</h1>
+    </header>
 
     <main>
-        <section id="landing-screen">
-            <h2>¡Bienvenido a Flight finder</h2>
+        <section id="landingScreen">
+            <h2>Bienvenido!</h2>
             <button id="search-flights-btn">Buscar Vuelos</button>
             <button id="view-map-btn">Ver Mapa</button>
             <button id="login-screen-btn">Login/SignUp</button>
         </section>
 
-        <section id="flights-searcher-screen" hidden>
+        <section id="flightsSearcherScreen" hidden>
+            <h1>Buscar Vuelos</h1>
         </section>
 
-        <section id="flights-screen" hidden>
+        <section id="searchByFNumberScreen" hidden>
         </section>
 
-        <section id="map-screen" hidden>
+        <section id="searchByAirportNameScreen" hidden>
+        </section>
+
+        <section id="flightsScreen" hidden>
+        </section>
+
+        <section id="flightDetailsScreen" hidden>
+        </section>
+
+        <section id="mapScreen" hidden>
+            <h1>Vuelos Cercanos</h1>
             <div id="map"></div>
         </section>
 
