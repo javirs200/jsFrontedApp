@@ -65,9 +65,10 @@ li{
 }
 
 fieldset{
-  border: 5px dashed #111;
-  outline:2px dashed #000;
-  outline-offset:-1.5px;
+  border: 10px solid #000000;
+  outline:2px dashed #ffffff;
+  outline-offset:-6px;
+  border-radius: 25px;
 }
 
 button#viewBylocationBTN{
