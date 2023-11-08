@@ -29,3 +29,4 @@ https://javirs200.github.io/jsFrontedApp/
 # fallos conocidos 
 
 - al buscar por aeropuerto a veces el mapa no se actualiza correctamente
+- navegacion prematura entre ventanas antes de su carga
