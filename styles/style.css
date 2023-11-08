@@ -2,8 +2,6 @@ html{
   font-family: 'B612', sans-serif;
 }
 
-
-
 /*cualquier elemento con el atributo hidden
 para que funcione en los flexbox*/
 [hidden] {
@@ -64,6 +62,12 @@ ul {
 
 li{
   margin: 10px;
+}
+
+fieldset{
+  border: 5px dashed #111;
+  outline:2px dashed #000;
+  outline-offset:-1.5px;
 }
 
 button#viewBylocationBTN{
