@@ -446,6 +446,8 @@ async function addTransport(location) {
 
 function showNewLocationOnMap(latitude, longitude) {
 
+    let location = { x: latitude, y: longitude }
+
     globalMap.setView([latitude, longitude], 12)
 
     layerGroup.clearLayers()
