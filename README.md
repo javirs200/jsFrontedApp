@@ -14,8 +14,18 @@ https://javirs200.github.io/jsFrontedApp/
 
 # Tecnologías utilizadas
 
--HTML5,CSS3,ES6
--Arquitectura Single Page Aplication
--Firebase (auth,firestore)
--Leaflet Maps
--Flight Radar API
+- HTML5,CSS3,ES6
+- Arquitectura Single Page Aplication
+- Firebase (auth,firestore)
+- Leaflet Maps
+- Flight Radar API
+
+# Funciones en Desarrollo
+
+- Seguimiento en tiempo real de las aeronaves
+- Trazado de ruta en mapa
+- Mostrar lista de vuelos por aeropuerto 
+
+# fallos conocidos 
+
+- al buscar por aeropuerto a veces el mapa no se actualiza correctamente
