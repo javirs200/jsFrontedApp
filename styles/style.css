@@ -45,6 +45,27 @@ button {
   border-radius: 10px;
 }
 
+section {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  font-size: large;
+  font-weight: bold;
+}
+
+ul {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+li{
+  margin: 10px;
+}
+
 button#viewBylocationBTN{
   background-color: rgb(127, 161, 255);
 }
@@ -73,26 +94,7 @@ input[type=text] {
   border-radius: 10px;
 }
 
-section {
-  margin-top: 10px;
-  display: flex;
-  flex-wrap: nowrap;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
-  font-size: large;
-  font-weight: bold;
-}
 
-ul {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-}
-
-li{
-  margin: 10px;
-}
 
 img#aircraftImg{
   width: 50vw;
