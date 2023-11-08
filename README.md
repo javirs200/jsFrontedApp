@@ -1,4 +1,4 @@
-# Flight Finder
+# :mag: Flight Finder :airplane:
 
 Proyecto individual para la realización de una aplicación FrontEnd usnado los conocimientos de HTML, CSS, JavaScript aprendidos hasta el momento.
 
