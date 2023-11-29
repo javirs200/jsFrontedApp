@@ -677,13 +677,6 @@ firebase.auth().onAuthStateChanged(function (user) {
 
 window.addEventListener("load", () => {
 
-    try {
-        console.log(window.env);
-    } catch (error) {
-        console.log('error caching env variables');
-    }
-    
-
     goSearchBtn.addEventListener("click", showSearchFlightsScreen)
 
     goMapBtn.addEventListener("click", showMapWithCurrentLocation)
