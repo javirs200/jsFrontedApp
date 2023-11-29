@@ -13,16 +13,16 @@ body {
   background-color: rgb(132, 199, 221);
   justify-content: center;
   flex-direction: column;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: center;
 }
 
 main {
-  height: 75vh;
-  width: 100vw;
+  height: 95%;
+  width: 95%;
   background-color: lightblue;
   border-radius: 25px;
-  overflow: scroll;
+  padding-bottom: 20%;
 }
 
 h1 {
@@ -99,7 +99,11 @@ input[type=text] {
   border-radius: 10px;
 }
 
-
+p#leyenda{
+  font-size: small;
+  padding-left: 10%;
+  color: lightslategray;
+}
 
 img#aircraftImg{
   width: 50vw;
@@ -115,6 +119,8 @@ img#aircraftImg{
   #map {
     width: 500px;
   }
+
+
   
 }
 
