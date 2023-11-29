@@ -232,6 +232,8 @@ function fillFlightDatailsScreen(details, aircraftImage) {
 
     flightDetailsScreen.appendChild(flightDetailtitle)
 
+    //console.log(details);
+
     let detailList = document.createElement('ul')
     detailList.setAttribute('id', 'flighDetailList')
 
@@ -253,6 +255,9 @@ function fillFlightDatailsScreen(details, aircraftImage) {
     detailList.appendChild(document.createElement('li').appendChild(document.createTextNode(`Aeropuerto de destno : ${details.airport.destination.name}`)))
     detailList.appendChild(document.createElement('br'))
 
+    detailList.appendChild(document.createElement('li').appendChild(document.createTextNode(`Matricula : ${details.aircraft.registration}`)))
+    detailList.appendChild(document.createElement('br'))
+
     flightDetailsScreen.appendChild(detailList)
 
     if (aircraftImage != null) {
@@ -262,7 +267,14 @@ function fillFlightDatailsScreen(details, aircraftImage) {
         img.setAttribute('id', 'aircraftImg')
         flightDetailsScreen.appendChild(img)
 
+        let leyend = document.createElement('p')
+        leyend.setAttribute('id','leyenda')
+        leyend.appendChild(document.createTextNode(`Modelo : ${details.aircraft.model.text}`))
+        flightDetailsScreen.appendChild(leyend)
+
     }
+
+
 
     if (isSigned) {
         let saveToFavouritesBtn = document.createElement('button')
@@ -283,7 +295,7 @@ function fillFlightDatailsScreen(details, aircraftImage) {
 }
 
 function saveFlight(flighNumber) {
-    console.log('guardame esto :', flighNumber);
+    //console.log('guardame esto :', flighNumber);
 
     let user = firebase.auth().currentUser;
 
@@ -296,12 +308,12 @@ function saveFlight(flighNumber) {
                 if (doc.data()) {
                     //si existen datos se añaden
                     let flights = doc.data().flights
-                    console.log('payload existente :', flights);
+                    //console.log('payload existente :', flights);
                     flights.push(flighNumber)
-                    console.log('nuevo payload : ', flights);
+                    //console.log('nuevo payload : ', flights);
                     docRef.set({ flights })
                         .then(() => {
-                            console.log("Document successfully written!");
+                            //console.log("Document successfully written!");
                         })
                         .catch((error) => console.error("Error adding document: ", error));
                 } else {
@@ -310,7 +322,7 @@ function saveFlight(flighNumber) {
                         { flights: [flighNumber] }
                     )
                         .then(() => {
-                            console.log("Document successfully written!");
+                            //console.log("Document successfully written!");
                         })
                         .catch((error) => console.error("Error adding document: ", error));
 
@@ -320,7 +332,7 @@ function saveFlight(flighNumber) {
 
     } else {
         // El usuario no está autenticado
-        console.log('El usuario no está autenticado.');
+        //console.log('El usuario no está autenticado.');
     }
 
 
@@ -369,7 +381,7 @@ function loadFavs() {
 
     } else {
         // El usuario no está autenticado
-        console.log('El usuario no está autenticado.');
+        //console.log('El usuario no está autenticado.');
     }
 
 }
@@ -394,7 +406,7 @@ function getLocation() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition)
     } else {
-        console.log("Geolocation is not supported by this browser.");
+        //console.log("Geolocation is not supported by this browser.");
     }
 }
 
@@ -421,24 +433,28 @@ async function addTransport(location) {
 
     for (const plane of viones) {
 
-        let h2 = document.createElement('h2')
+        let h3 = document.createElement('h3')
 
         //14th atribute correspond to flight number
+
+        //console.log(plane);
+        // array muestra ['3304a5d9', '020066', 40.7252, -2.7257, 192, 37000, 446, '', 'F-LEMD10', 'B738', 'CN-ROE', 1701284674, 'BRU', 'CMN', 'AT833', 0, 0, 'RAM833B', 0]
+
         if (plane[14] != '') {
-            h2.appendChild(document.createTextNode(plane[14]))
-            h2.addEventListener("click", () => {
+            h3.appendChild(document.createTextNode('Nº Vuelo :' + plane[14] + ', Matricula:' + plane[10]))
+            h3.addEventListener("click", () => {
                 findFlight(plane[14])
                 navigationQueuque.push(mapScreen)
                 swapScreens(mapScreen, flightDetailsScreen)
             })
         } else {
-            //withouth flight number , show plates or id
-            h2.style.color = 'lightgray'
-            h2.appendChild(document.createTextNode(plane[10]))
+            //withouth flight number , show plates or id and ligh colour
+            h3.style.color = 'lightgray'
+            h3.appendChild(document.createTextNode('Sin Vuelo , Matricula:' + plane[10]))
         }
 
         let planeMarker = L.marker([plane[2], plane[3]], { icon: planeIcon })
-        planeMarker.bindPopup(h2)
+        planeMarker.bindPopup(h3)
         planeMarker.addTo(layerGroup);
     }
 
@@ -516,7 +532,7 @@ async function findAirport(AirportName) {
 async function findFlight(flighNumber) {
 
     let data = await apiMoreInfoByFNumber(flighNumber)
-    console.log('vuelos encontrados ->')
+    //console.log('vuelos encontrados ->')
 
     if (data.result.response.data != null) {
         let flightData = data.result.response.data
@@ -535,7 +551,7 @@ async function findFlight(flighNumber) {
         detailsBackButton.addEventListener("click", () => { goBackInNavigation(flightDetailsScreen) })
         flightDetailsScreen.appendChild(detailsBackButton)
     }
-    console.log("------------");
+    //console.log("------------");
 }
 
 //api calls
@@ -631,7 +647,7 @@ function logout() {
     firebase.auth().signOut()
         .then(function () {
             // Sign-out successful.
-            console.log('User signed out');
+            //console.log('User signed out');
         })
         .catch(function (error) {
             // An error happened.
@@ -647,7 +663,7 @@ firebase.auth().onAuthStateChanged(function (user) {
 
     if (user) {
         // User is signed in.
-        console.log('User is signed in');
+        //console.log('User is signed in');
 
         authBtn.innerHTML = 'LogOut'
 
@@ -660,7 +676,7 @@ firebase.auth().onAuthStateChanged(function (user) {
 
     } else {
         // User is signed out.
-        console.log('User is signed out');
+        //console.log('User is signed out');
 
         authBtn.innerHTML = 'LogIn/SignUp'
 
@@ -672,7 +688,7 @@ firebase.auth().onAuthStateChanged(function (user) {
             goFavsBtn.toggleAttribute('hidden')
     }
 
-    console.log('is signed ', isSigned);
+    //console.log('is signed ', isSigned);
 });
 
 window.addEventListener("load", () => {
