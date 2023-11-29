@@ -678,7 +678,7 @@ firebase.auth().onAuthStateChanged(function (user) {
 window.addEventListener("load", () => {
 
     try {
-        console.log(process.env);
+        console.log(window.env);
     } catch (error) {
         console.log('error caching env variables');
     }
