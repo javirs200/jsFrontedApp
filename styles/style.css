@@ -1,4 +1,4 @@
-html{
+html {
   font-family: 'B612', sans-serif;
 }
 
@@ -23,6 +23,10 @@ main {
   background-color: lightblue;
   border-radius: 25px;
   padding-bottom: 20%;
+
+  -webkit-box-shadow: 8px 24px 24px 8px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 8px 24px 24px 8px rgba(0, 0, 0, 0.75);
+  box-shadow: 8px 24px 24px 8px rgba(0, 0, 0, 0.75);
 }
 
 h1 {
@@ -38,9 +42,13 @@ button {
   font-weight: bold;
   width: 75%;
   height: 50px;
-  margin: 10px;
+  margin: 20px;
   background-color: rgb(127, 212, 255);
   border-radius: 10px;
+
+  -webkit-box-shadow: 8px 14px 24px 1px rgba(102, 174, 196, 1);
+  -moz-box-shadow: 8px 14px 24px 1px rgba(102, 174, 196, 1);
+  box-shadow: 8px 14px 24px 1px rgba(102, 174, 196, 1);
 }
 
 section {
@@ -60,22 +68,24 @@ ul {
   flex-direction: row;
 }
 
-li{
+li {
   margin: 10px;
 }
 
-fieldset{
-  border: 10px solid #000000;
-  outline:2px dashed #ffffff;
-  outline-offset:-6px;
+fieldset {
+  border: 5px solid #0bbbec;
   border-radius: 25px;
+  
+  -webkit-box-shadow: 8px 14px 24px 1px rgba(102, 174, 196, 1);
+  -moz-box-shadow: 8px 14px 24px 1px rgba(102, 174, 196, 1);
+  box-shadow: 8px 14px 24px 1px rgba(102, 174, 196, 1);
 }
 
-button#viewBylocationBTN{
+button#viewBylocationBTN {
   background-color: rgb(127, 161, 255);
 }
 
-button#saveToFavouritesBtn{
+button#saveToFavouritesBtn {
   background-color: rgb(219, 255, 127);
 }
 
@@ -87,6 +97,10 @@ input[type=submit] {
   margin: 10px;
   background-color: rgb(127, 255, 168);
   border-radius: 10px;
+
+  -webkit-box-shadow: 8px 14px 24px 1px rgba(102, 174, 196, 1);
+  -moz-box-shadow: 8px 14px 24px 1px rgba(102, 174, 196, 1);
+  box-shadow: 8px 14px 24px 1px rgba(102, 174, 196, 1);
 }
 
 input[type=text] {
@@ -95,17 +109,17 @@ input[type=text] {
   width: 50%;
   height: 50px;
   margin: 10px;
-  background-color:  rgb(166, 251, 193);
+  background-color: rgb(166, 251, 193);
   border-radius: 10px;
 }
 
-p#leyenda{
+p#leyenda {
   font-size: small;
   padding-left: 10%;
   color: lightslategray;
 }
 
-img#aircraftImg{
+img#aircraftImg {
   width: 50vw;
 }
 
@@ -113,6 +127,10 @@ img#aircraftImg{
   height: 400px;
   width: 400px;
   border-radius: 20px;
+
+  -webkit-box-shadow: 8px 14px 24px 1px rgba(102, 174, 196, 1);
+  -moz-box-shadow: 8px 14px 24px 1px rgba(102, 174, 196, 1);
+  box-shadow: 8px 14px 24px 1px rgba(102, 174, 196, 1);
 }
 
 @media screen and (min-width: 700px) {
@@ -120,12 +138,10 @@ img#aircraftImg{
     width: 500px;
   }
 
-
-  
 }
 
 @media screen and (min-width: 1025px) {
-  
+
   #map {
     width: 800px;
   }
