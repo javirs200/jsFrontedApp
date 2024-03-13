@@ -458,6 +458,8 @@ function showNewLocationOnMap(latitude, longitude) {
 
 async function findAirport(AirportName) {
 
+    document.getElementById('loader').style.display = 'block'; // Mostrar la animación de carga
+
     //console.log(AirportName);
 
     let data = await apiSearchbyAirportName(AirportName)
@@ -513,6 +515,8 @@ async function findAirport(AirportName) {
 
 async function findFlight(flighNumber) {
 
+    document.getElementById('loader').style.display = 'block'; // Mostrar la animación de carga
+
     let data = await apiMoreInfoByFNumber(flighNumber)
     console.log('vuelos encontrados ->')
 
@@ -553,9 +557,13 @@ async function apiSearchbyAirportName(AirportName) {
     return await fetch(url, options)
         .then(res => res.json())
         .then((data) => {
+            document.getElementById('loader').style.display = 'none'; // Ocultar la animación de carga después de obtener la respuesta
             return data;
         })
-        .catch((error) => console.error("Error calling to api: ", error));
+        .catch((error) => {
+            console.error("Error calling to api: ", error)
+            document.getElementById('loader').style.display = 'none'; // Ocultar la animación de carga en caso de error
+        });
 }
 
 async function apiMoreInfoByFNumber(flightNumber) {
@@ -564,9 +572,13 @@ async function apiMoreInfoByFNumber(flightNumber) {
     return await fetch(url, options)
         .then(res => res.json())
         .then((data) => {
+            document.getElementById('loader').style.display = 'none'; // Ocultar la animación de carga después de obtener la respuesta
             return data;
         })
-        .catch((error) => console.error("Error calling to api: ", error));
+        .catch((error) => {
+            console.error("Error calling to api: ", error)
+            document.getElementById('loader').style.display = 'none'; // Ocultar la animación de carga en caso de error
+        });
 }
 
 function getApiUrl(location) {
