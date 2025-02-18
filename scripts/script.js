@@ -72,6 +72,8 @@ function initScreens() {
 
 async function initMapScren() {
 
+    mapScreen.toggleAttribute("hidden")
+
     globalMap = L.map('map');
 
     layerGroup = L.layerGroup().addTo(globalMap);
@@ -81,12 +83,16 @@ async function initMapScren() {
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(globalMap);
 
+    globalMap.setView([0.0, 0.0], 12)
+
     let mapBackButton = document.createElement('button')
     mapBackButton.setAttribute('id', 'mapBackButton')
     mapBackButton.innerHTML = 'Go Back'
     mapBackButton.addEventListener("click", () => { goBackInNavigation(mapScreen) })
 
     mapScreen.appendChild(mapBackButton)
+
+    mapScreen.toggleAttribute("hidden")
 }
 
 function initSearcherScreen() {
@@ -406,11 +412,13 @@ function getLocation() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition)
     } else {
-        //console.log("Geolocation is not supported by this browser.");
+        console.log("Geolocation is not available, at this moment.");
     }
 }
 
 async function showPosition(position) {
+
+    console.log("Latitude: " + position.coords.latitude + " Longitude: " + position.coords.longitude)
 
     let location = { x: position.coords.latitude, y: position.coords.longitude }
 
@@ -705,6 +713,8 @@ firebase.auth().onAuthStateChanged(function (user) {
 
 window.addEventListener("load", () => {
 
+    initScreens()
+
     goSearchBtn.addEventListener("click", showSearchFlightsScreen)
 
     goMapBtn.addEventListener("click", showMapWithCurrentLocation)
@@ -712,7 +722,5 @@ window.addEventListener("load", () => {
     authBtn.addEventListener("click", showSinginPopUP)
 
     goFavsBtn.addEventListener('click', showFavsScreen)
-
-    initScreens()
-
+    
 })
