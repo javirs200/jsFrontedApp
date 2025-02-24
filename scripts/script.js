@@ -429,6 +429,17 @@ async function showPosition(position) {
     L.marker([location.x, location.y]).addTo(layerGroup);
 
     addTransport(location)
+
+    // prueba loop de actualizacion de vuelos
+    setInterval(() => {
+
+        layerGroup.clearLayers()
+
+        L.marker([location.x, location.y]).addTo(layerGroup);
+
+        addTransport(location)
+
+    }, 10000);
 }
 
 //planes methods
@@ -461,7 +472,7 @@ async function addTransport(location) {
             h3.appendChild(document.createTextNode('Sin Vuelo , Matricula:' + plane[10]))
         }
 
-        let planeMarker = L.marker([plane[2], plane[3]], { icon: planeIcon })
+        let planeMarker = L.marker([plane[2], plane[3]], { icon: planeIcon , rotationAngle: (plane[4]-90) })
         planeMarker.bindPopup(h3)
         planeMarker.addTo(layerGroup);
     }
